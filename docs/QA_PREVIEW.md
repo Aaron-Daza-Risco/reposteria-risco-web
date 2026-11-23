@@ -7,7 +7,7 @@ Revisión del 23 de noviembre de 2026. Sitio estático en Astro y TypeScript con
 | Área | Resultado | Evidencia |
 | --- | --- | --- |
 | Responsive | PASA | Inicio a 320, 360, 390, 430, 640, 768, 1280 y 1440 px. Sin desbordamiento horizontal. El título de portada ocupa dos líneas y se cargan las ocho imágenes. |
-| Navegación | PASA | Menú móvil con teclado, cierre con Escape, cambio de ancla con foco en Talleres, enlace de salto y retorno desde fichas. |
+| Navegación | PASA | Menú móvil con teclado, cierre con Escape, cambio de ancla con foco en Talleres, enlace de salto y retorno desde fichas. En WebKit con el perfil iPhone 13 emulado a 390 px también se probaron los toques para menú, ficha, galería y FAQ. |
 | Talleres | PASA | Cuatro fichas con foto, temario y respuesta HTTP 200. El estado de referencia se muestra sin anunciar cupos ni fechas vigentes. |
 | WhatsApp | PASA | El número coincide en la cabecera, la ficha y la barra móvil. Se comprobaron el texto prellenado por cada ficha y la redirección a WhatsApp. La prueba no envió un mensaje. |
 | Ubicación | PASA | La URL de Google Maps responde HTTP 200 y su destino es Jr. Elías Aguirre 1168, Chimbote, Áncash, Perú, confirmado por el solicitante. |
@@ -38,4 +38,6 @@ La primera revisión a 390 px mostró que el nombre accesible de la marca no seg
 
 ## Publicación
 
-El código está en `main` de [reposteria-risco-web](https://github.com/Aaron-Daza-Risco/reposteria-risco-web). Vercel CLI 66.6.0 rechazó el primer despliegue Preview con `first_deployment_production`. Se preparó la vía de borrador manual de Netlify y se solicitó el acceso a la cuenta para completar la comprobación remota.
+El código está en `main` de [reposteria-risco-web](https://github.com/Aaron-Daza-Risco/reposteria-risco-web). Vercel CLI 66.6.0 rechazó el intento Preview con `first_deployment_production` al tratarse del primer despliegue de un proyecto nuevo. [Guía de Vercel](https://vercel.com/docs/projects/deploy-from-cli#4-deploy-a-preview).
+
+**Verificación de URL remota: NO PROBADO.** El build y la configuración para un borrador manual están listos. Netlify reporta pendiente la autorización de la cuenta. [Guía de borradores de Netlify](https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/#draft-deploys).
