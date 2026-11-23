@@ -38,4 +38,4 @@ La primera revisión a 390 px mostró que el nombre accesible de la marca no seg
 
 ## Publicación
 
-El código se prepara para `main` de [reposteria-risco-web](https://github.com/Aaron-Daza-Risco/reposteria-risco-web). El enlace revisado de Vercel y las verificaciones remotas se registran después del despliegue Preview.
+El código está en `main` de [reposteria-risco-web](https://github.com/Aaron-Daza-Risco/reposteria-risco-web). Vercel CLI 66.6.0 rechazó el primer despliegue Preview con `first_deployment_production`. Se preparó la vía de borrador manual de Netlify y se solicitó el acceso a la cuenta para completar la comprobación remota.

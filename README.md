@@ -24,10 +24,17 @@ El build genera `dist/`. Astro y TypeScript generan las rutas de cada taller. Ta
 
 ## Preview
 
-El proyecto usa la modalidad Preview de Vercel desde CLI y tiene deshabilitados los despliegues automáticos desde Git. El HTML y las respuestas de Vercel solicitan que los buscadores excluyan esta versión de su índice.
+El HTML y las respuestas configuradas solicitan que los buscadores excluyan esta versión de su índice. Vercel mantiene deshabilitados los despliegues automáticos desde Git. Para un proyecto de Vercel que ya admita Preview, se puede usar:
 
 ```sh
 npx vercel deploy --environment preview --project reposteria-risco-web
+```
+
+Como alternativa, una cuenta de Netlify con un proyecto de revisión permite subir el build manual como borrador:
+
+```sh
+npm run build
+npx netlify-cli deploy --dir dist --no-build --site <id-del-proyecto>
 ```
 
 Consulta el [informe de comprobaciones](docs/QA_PREVIEW.md) y el [inventario de fuentes](docs/INVENTARIO_FUENTES.md).

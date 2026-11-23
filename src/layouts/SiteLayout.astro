@@ -17,8 +17,8 @@ interface Props {
 
 const { title, description, contactMessage, structuredData, ogPhoto } = Astro.props;
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
-const previewHost = process.env.VERCEL_URL;
-const ogImage = ogPhoto && previewHost && await getImage({ src: ogPhoto.image, width: Math.min(1200, ogPhoto.image.width), format: 'jpeg' });
+const previewOrigin = process.env.DEPLOY_PRIME_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+const ogImage = ogPhoto && previewOrigin && await getImage({ src: ogPhoto.image, width: Math.min(1200, ogPhoto.image.width), format: 'jpeg' });
 ---
 <!doctype html>
 <html lang="es-PE">
@@ -35,7 +35,7 @@ const ogImage = ogPhoto && previewHost && await getImage({ src: ogPhoto.image, w
     <meta property="og:site_name" content={site.name} />
     {ogImage && ogPhoto && (
       <>
-        <meta property="og:image" content={new URL(ogImage.src, `https://${previewHost}`).href} />
+        <meta property="og:image" content={new URL(ogImage.src, previewOrigin).href} />
         <meta property="og:image:alt" content={ogPhoto.alt} />
       </>
     )}
