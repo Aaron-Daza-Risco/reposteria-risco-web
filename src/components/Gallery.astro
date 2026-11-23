@@ -1,0 +1,81 @@
+---
+import { getImage } from 'astro:assets';
+import type { Photo } from '../data/gallery';
+import ResponsivePhoto from './ResponsivePhoto.astro';
+
+interface Props { photos: Photo[] }
+
+const { photos } = Astro.props;
+const entries = await Promise.all(photos.map(async (photo) => ({
+  photo,
+  full: await getImage({ src: photo.image, width: Math.min(photo.image.width, 1500), format: 'webp' }),
+})));
+---
+<section class="section wrap" id="experiencia" tabindex="-1" aria-labelledby="experience-title">
+  <header class="section-heading">
+    <h2 id="experience-title">Así se vive un taller</h2>
+    <p>Abre una foto para verla en detalle.</p>
+  </header>
+  <div class="gallery-grid" data-gallery>
+    {entries.map(({ photo, full }) => (
+      <figure>
+        <a href={full.src} data-photo data-alt={photo.alt} data-caption={photo.caption} aria-label={`Ampliar foto: ${photo.alt}`}>
+          <ResponsivePhoto photo={photo} sizes="(min-width: 72rem) 560px, (min-width: 55rem) 45vw, (min-width: 37rem) 58vw, 115vw" />
+        </a>
+        <figcaption>{photo.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+  <dialog class="gallery-dialog" aria-label="Fotografías del taller">
+    <div class="gallery-dialog-inner">
+      <form method="dialog"><button class="button button-outline" autofocus>Cerrar</button></form>
+      <img alt="" data-full-photo />
+      <p data-photo-status aria-live="polite"></p>
+      {entries.length > 1 && (
+        <div class="gallery-controls">
+          <button class="button button-outline" type="button" data-step="-1">Anterior</button>
+          <button class="button button-outline" type="button" data-step="1">Siguiente</button>
+        </div>
+      )}
+    </div>
+  </dialog>
+</section>
+<script>
+  const photos = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-photo]'));
+  const dialog = document.querySelector<HTMLDialogElement>('.gallery-dialog');
+  const image = dialog?.querySelector<HTMLImageElement>('[data-full-photo]');
+  const caption = dialog?.querySelector('[data-photo-status]');
+
+  if (dialog && image && caption && photos.length && typeof dialog.showModal === 'function') {
+    let index = 0;
+    let trigger: HTMLAnchorElement | undefined;
+
+    function showPhoto(next: number) {
+      if (!image || !caption) return;
+      index = (next + photos.length) % photos.length;
+      const photo = photos[index];
+      image.src = photo.href;
+      image.alt = photo.dataset.alt ?? '';
+      caption.textContent = `${index + 1} de ${photos.length} · ${photo.dataset.caption}`;
+    }
+
+    photos.forEach((photo, position) => photo.addEventListener('click', (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      trigger = photo;
+      showPhoto(position);
+      dialog.showModal();
+    }));
+    dialog.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((button) => {
+      button.addEventListener('click', () => showPhoto(index + Number(button.dataset.step)));
+    });
+    dialog.addEventListener('keydown', (event) => {
+      if (photos.length < 2) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        showPhoto(index + (event.key === 'ArrowLeft' ? -1 : 1));
+      }
+    });
+    dialog.addEventListener('close', () => trigger?.focus());
+  }
+</script>

@@ -1,0 +1,21 @@
+@theme {
+  --color-paper: #fbf6ee;
+  --color-ink: #2d1922;
+  --color-muted: #624d54;
+  --color-berry: #862b50;
+  --color-wine: #3e1d2b;
+  --color-rose: #f2dce3;
+  --color-wheat: #ebd6b5;
+  --color-sage: #dedfd1;
+  --color-line: #d8c7bd;
+  --font-sans: 'DM Sans Variable', system-ui, sans-serif;
+  --font-serif: 'Fraunces Variable', Georgia, serif;
+}
+
+:root {
+  --gutter: clamp(1.1rem, 4vw, 3.4rem);
+  --wrap: 75rem;
+  --header-height: 4.1rem;
+  --mobile-contact-height: 4.35rem;
+  --motion: 180ms ease;
+}

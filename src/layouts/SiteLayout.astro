@@ -1,0 +1,58 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactLink from '../components/ContactLink.astro';
+import { getImage } from 'astro:assets';
+import type { Photo } from '../data/gallery';
+import { site } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  contactMessage?: string;
+  structuredData?: Record<string, unknown>;
+  ogPhoto?: Photo;
+}
+
+const { title, description, contactMessage, structuredData, ogPhoto } = Astro.props;
+const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const previewHost = process.env.VERCEL_URL;
+const ogImage = ogPhoto && previewHost && await getImage({ src: ogPhoto.image, width: Math.min(1200, ogPhoto.image.width), format: 'jpeg' });
+---
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#fbf6ee" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content={site.name} />
+    {ogImage && ogPhoto && (
+      <>
+        <meta property="og:image" content={new URL(ogImage.src, `https://${previewHost}`).href} />
+        <meta property="og:image:alt" content={ogPhoto.alt} />
+      </>
+    )}
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <title>{fullTitle}</title>
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header contactMessage={contactMessage} />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <div class="mobile-contact">
+      <ContactLink message={contactMessage} class="button">Consultar por WhatsApp</ContactLink>
+    </div>
+  </body>
+</html>

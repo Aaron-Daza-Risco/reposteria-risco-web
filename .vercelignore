@@ -1,0 +1,6 @@
+.agents/
+.github/
+docs/
+.env*
+LEEME_PRIMERO.md
+PROMPT_MAESTRO_CODEX.md

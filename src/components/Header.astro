@@ -1,0 +1,54 @@
+---
+import Brand from './Brand.astro';
+import ContactLink from './ContactLink.astro';
+import { photography } from '../data/gallery';
+
+interface Props { contactMessage?: string }
+
+const { contactMessage } = Astro.props;
+const home = Astro.url.pathname === '/';
+const items = [
+  { id: 'talleres', label: 'Talleres' },
+  ...(photography.gallery.length ? [{ id: 'experiencia', label: 'La experiencia' }] : []),
+  { id: 'inscripcion', label: 'Inscripción' },
+  { id: 'ubicacion', label: 'Ubicación' },
+];
+---
+<header class="site-header">
+  <div class="wrap header-inner">
+    <Brand />
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      {items.map(({ id, label }) => <a href={`${home ? '' : '/'}#${id}`}>{label}</a>)}
+    </nav>
+    <ContactLink message={contactMessage} class="button header-contact">Consultar por WhatsApp</ContactLink>
+    <details class="mobile-menu">
+      <summary class="menu-toggle list-none">
+        Menú <span class="menu-lines" aria-hidden="true"></span>
+      </summary>
+      <nav aria-label="Navegación móvil">
+        {items.map(({ id, label }) => <a href={`${home ? '' : '/'}#${id}`}>{label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+  if (menu) {
+    const toggle = menu.querySelector('summary');
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        event.preventDefault();
+        menu.open = false;
+        toggle?.focus();
+      }
+    });
+    menu.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.open = false;
+        if (link.pathname === window.location.pathname) {
+          document.getElementById(link.hash.slice(1))?.focus({ preventScroll: true });
+        }
+      });
+    });
+  }
+</script>

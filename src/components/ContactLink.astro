@@ -1,0 +1,13 @@
+---
+import { generalMessage, whatsappUrl } from '../data/site';
+
+interface Props {
+  message?: string;
+  class?: string;
+}
+
+const { message = generalMessage, class: className } = Astro.props;
+---
+<a class={className} href={whatsappUrl(message)} rel="external noopener noreferrer">
+  <slot />
+</a>

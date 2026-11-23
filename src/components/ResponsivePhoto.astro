@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { Photo } from '../data/gallery';
+
+interface Props {
+  photo: Photo;
+  sizes: string;
+  priority?: boolean;
+}
+
+const { photo, sizes, priority = false } = Astro.props;
+const maxWidth = Math.min(photo.image.width, 1400);
+const widths = [360, 560, 820, 1120].filter((width) => width < maxWidth).concat(maxWidth);
+---
+<Image
+  src={photo.image}
+  alt={photo.alt}
+  width={maxWidth}
+  widths={widths}
+  sizes={sizes}
+  format="webp"
+  quality={82}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : undefined}
+  decoding="async"
+  style={photo.position ? { objectPosition: photo.position } : undefined}
+/>

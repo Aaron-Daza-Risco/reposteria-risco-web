@@ -1,0 +1,18 @@
+---
+import Brand from './Brand.astro';
+import ContactLink from './ContactLink.astro';
+import { site } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <Brand />
+      <p>{site.city}, {site.country}</p>
+    </div>
+    <nav aria-label="Contacto y privacidad">
+      <ContactLink>WhatsApp {site.whatsapp.display}</ContactLink>
+      <a href={site.facebookUrl} rel="external noopener noreferrer" aria-label={`Facebook de ${site.socialName}`}>Facebook</a>
+      <a href="/privacidad/">Privacidad</a>
+    </nav>
+  </div>
+</footer>

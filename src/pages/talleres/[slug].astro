@@ -1,0 +1,60 @@
+---
+import type { GetStaticPaths } from 'astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ContactLink from '../../components/ContactLink.astro';
+import ResponsivePhoto from '../../components/ResponsivePhoto.astro';
+import { site } from '../../data/site';
+import { isOpen, workshops, type Workshop } from '../../data/workshops';
+
+export const getStaticPaths = (() => workshops.map((workshop) => ({ params: { slug: workshop.slug }, props: { workshop } }))) satisfies GetStaticPaths;
+
+interface Props { workshop: Workshop }
+
+const { workshop } = Astro.props;
+const open = isOpen(workshop);
+const course = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: workshop.title,
+  description: workshop.description,
+  inLanguage: 'es-PE',
+  provider: { '@type': 'EducationalOrganization', name: site.name, sameAs: site.facebookUrl },
+};
+const attributes = [
+  { label: 'Modalidad', value: workshop.format },
+  { label: 'Ubicación', value: workshop.venue ?? site.city },
+  { label: 'Duración', value: workshop.duration },
+  { label: 'Nivel', value: workshop.level },
+  { label: 'Materiales', value: workshop.materialsIncluded },
+  { label: 'Fecha', value: open ? workshop.nextDate?.label : undefined },
+  { label: 'Precio', value: open ? workshop.price : undefined },
+].filter(({ value }) => value);
+---
+<SiteLayout title={workshop.title} description={workshop.description} contactMessage={workshop.whatsAppPrefill} structuredData={course} ogPhoto={workshop.cover}>
+  <article class="wrap detail-page">
+    <a class="text-link back-link" href="/#talleres">Volver a talleres</a>
+    <header class:list={['detail-intro', `workshop-${workshop.color}`]}>
+      <div>
+        <p class="eyebrow">{open ? 'Próxima edición' : 'Temario de referencia'}</p>
+        <h1>{workshop.title}</h1>
+        <p>{workshop.description}</p>
+      </div>
+      {workshop.cover && <figure><ResponsivePhoto photo={workshop.cover} sizes="(min-width: 55rem) 45vw, 92vw" priority /><figcaption>{workshop.cover.caption}</figcaption></figure>}
+    </header>
+    <div class="detail-grid">
+      <section aria-labelledby="syllabus-title">
+        <h2 id="syllabus-title">Qué incluye el temario</h2>
+        <ul class="topic-list" role="list">
+          {workshop.learningOutcomes.map((topic) => <li>{topic}</li>)}
+        </ul>
+      </section>
+      <aside class="detail-contact" aria-labelledby="detail-contact-title">
+        <h2 id="detail-contact-title">Consulta por el taller</h2>
+        <dl>
+          {attributes.map(({ label, value }) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
+        </dl>
+        <ContactLink message={workshop.whatsAppPrefill} class="button">Consultar por WhatsApp</ContactLink>
+      </aside>
+    </div>
+  </article>
+</SiteLayout>
