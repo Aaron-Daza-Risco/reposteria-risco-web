@@ -24,6 +24,8 @@ El build genera `dist/`. Astro y TypeScript generan las rutas de cada taller. Ta
 
 ## Preview
 
+[Abrir el borrador privado en Netlify](https://revision--reposteria-risco-web.netlify.app/). El enlace requiere iniciar sesión con acceso al proyecto.
+
 El HTML y las respuestas configuradas solicitan que los buscadores excluyan esta versión de su índice. Vercel mantiene deshabilitados los despliegues automáticos desde Git. Para un proyecto de Vercel que ya admita Preview, se puede usar:
 
 ```sh
