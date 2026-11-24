@@ -4,7 +4,7 @@ export interface Workshop {
   slug: string;
   title: string;
   category: string;
-  color: 'berry' | 'wheat' | 'sage' | 'paper';
+  color: 'berry' | 'blush' | 'lilac' | 'paper';
   cover?: Photo;
   verifiedStatus: 'referencia' | 'disponible';
   description: string;
@@ -40,7 +40,7 @@ export const workshops: Workshop[] = [
     slug: 'empanadas',
     title: 'Masas y rellenos de empanadas',
     category: 'Masas saladas',
-    color: 'wheat',
+    color: 'blush',
     cover: workshopPhotos.empanadas,
     verifiedStatus: 'referencia',
     description: 'Preparación de la masa y dos rellenos salados para empanadas, a partir del temario de Risco.',
@@ -54,7 +54,7 @@ export const workshops: Workshop[] = [
     slug: 'festival-de-helados',
     title: 'Festival de helados',
     category: 'Postres fríos',
-    color: 'sage',
+    color: 'lilac',
     cover: workshopPhotos.helados,
     verifiedStatus: 'referencia',
     description: 'Cremas base y combinaciones para preparar helados de distintos sabores.',

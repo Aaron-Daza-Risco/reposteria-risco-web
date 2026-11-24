@@ -7,6 +7,7 @@ Revisión del 23 de noviembre de 2026. Sitio estático en Astro y TypeScript con
 | Área | Resultado | Evidencia |
 | --- | --- | --- |
 | Responsive | PASA | Inicio a 320, 360, 390, 430, 640, 768, 1280 y 1440 px. Sin desbordamiento horizontal. El título de portada ocupa dos líneas y se cargan las ocho imágenes. |
+| Identidad de marca | PASA | Logo horizontal y apilado cargados con nombre accesible. Se comprobó el favicon y el espacio entre marca y navegación en once anchos, incluidos 879 y 880 px. |
 | Navegación | PASA | Menú móvil con teclado, cierre con Escape, cambio de ancla con foco en Talleres, enlace de salto y retorno desde fichas. En WebKit con el perfil iPhone 13 emulado a 390 px también se probaron los toques para menú, ficha, galería y FAQ. |
 | Talleres | PASA | Cuatro fichas con foto, temario y respuesta HTTP 200. El estado de referencia se muestra sin anunciar cupos ni fechas vigentes. |
 | WhatsApp | PASA | El número coincide en la cabecera, la ficha y la barra móvil. Se comprobaron el texto prellenado por cada ficha y la redirección a WhatsApp. La prueba no envió un mensaje. |
@@ -24,7 +25,7 @@ Revisión del 23 de noviembre de 2026. Sitio estático en Astro y TypeScript con
 
 | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP | CLS | TBT |
 | --- | --- | --- | --- | --- | --- | --- |
-| 97/100 | 100/100 | 100/100 | 66/100 | 2,49 s | 0,018 | 93 ms |
+| 97/100 | 100/100 | 100/100 | 66/100 | 2,14 s | 0,018 | 167 ms |
 
 La única auditoría binaria fallida fue `is-crawlable` por el `noindex` deliberado del Preview. Se comprobó título, descripción, jerarquía y datos estructurados. La prueba de laboratorio mide TBT. El INP de usuarios reales queda sin medición de campo.
 
@@ -34,7 +35,7 @@ La única auditoría binaria fallida fue `is-crawlable` por el `noindex` deliber
 - Inicio a [1280 px](capturas/inicio-1280.jpg) y [1440 px](capturas/inicio-1440.jpg).
 - [Ficha móvil](capturas/ficha-390.jpg) y [ampliación de la galería móvil](capturas/galeria-390.jpg).
 
-La primera revisión a 390 px mostró que el nombre accesible de la marca no seguía el texto visible. Se ajustó el enlace y se repitió el análisis. También se ensanchó el encuadre móvil de la portada y se aumentó la resolución seleccionada para fotos anchas en fichas y galería. Las capturas corresponden a la revisión posterior.
+Las capturas corresponden a la versión con los logos entregados. En la segunda pasada se amplió el logo de cabecera de 160 a 176 px en móvil y se repitieron las pruebas de lectura, espacio y navegación.
 
 ## Publicación
 

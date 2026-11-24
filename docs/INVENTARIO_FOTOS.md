@@ -15,4 +15,14 @@ Selección del 23 de noviembre de 2026. El solicitante autorizó seleccionar y p
 
 Las cuatro fichas usan fotos de preparaciones del archivo. Solo se atribuyen a una clase concreta las escenas que lo permiten. La identificación conserva nombres de archivo y fechas de captura. El repositorio no incluye enlaces privados ni originales.
 
-Las tres variantes `LOGO NATALY RISCO (PNG)` de Drive se inspeccionaron para la paleta. El identificador tipográfico se adoptó mientras se confirma qué variante de marca debe acompañar el nombre de la escuela. La selección carece de una foto inequívoca de fachada.
+La selección carece de una foto inequívoca de fachada.
+
+## Identidad gráfica
+
+Archivos entregados y autorizados por el solicitante el 23 de noviembre de 2026.
+
+| Archivo entregado | Copia web | Uso |
+| --- | --- | --- |
+| `LOGO NATALY RISCO 1 (PNG).png` | `nataly-risco-horizontal.png` | Logo completo en la cabecera |
+| `LOGO NATALY RISCO 3 (PNG).png` | `nataly-risco-apilado.png` | Logo apilado en el pie |
+| `LOGO NATALY RISCO 2 NEGRO (JPG).jpg` | `favicon.png` e `icon-192.png` | Recorte y reducción del monograma NR para la pestaña y el icono táctil |

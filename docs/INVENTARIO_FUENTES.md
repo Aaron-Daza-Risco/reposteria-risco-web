@@ -13,5 +13,5 @@ Consultado el 23 de noviembre de 2026. Las referencias a Drive se identifican po
 | F07 | Chimbote, Áncash | F01 y F03 | verificado |
 | F08 | Jr. Elías Aguirre 1168, Chimbote, sede de talleres | Dirección del anuncio de cremoladas en F03, corroborada por el solicitante el 23 de noviembre de 2026 para su publicación. El enlace de Google Maps usa la dirección confirmada como destino. | verificado |
 | F09 | Fechas vigentes, precios, horarios, cupos, nivel, materiales, políticas y credenciales | Sin confirmación vigente. Los horarios de directorios corresponden a fichas comerciales. | no_disponible |
-| F10 | Marca gráfica de Nataly Risco y relación con la escuela | Tres versiones de logo en la carpeta `NATALY RISCO` de Drive. La grafía y el identificador difieren del perfil público. | por_confirmar |
+| F10 | Identidad gráfica «Nataly Risco · Pastelería Creativa» | El solicitante entregó y autorizó los logotipos para este sitio el 23 de noviembre de 2026. Véase el [inventario de material visual](INVENTARIO_FOTOS.md#identidad-gráfica). | verificado |
 | F11 | Fotografías de preparaciones y de prácticas de decoración | Selección autorizada de la biblioteca de Repostería Creativa Risco en Google Fotos. Véase [inventario de fotos](INVENTARIO_FOTOS.md). | verificado |

@@ -20,7 +20,7 @@ const items = [
     <nav class="desktop-nav" aria-label="Navegación principal">
       {items.map(({ id, label }) => <a href={`${home ? '' : '/'}#${id}`}>{label}</a>)}
     </nav>
-    <ContactLink message={contactMessage} class="button header-contact">Consultar por WhatsApp</ContactLink>
+    <ContactLink message={contactMessage} class="button button-light header-contact">Consultar por WhatsApp</ContactLink>
     <details class="mobile-menu">
       <summary class="menu-toggle list-none">
         Menú <span class="menu-lines" aria-hidden="true"></span>
